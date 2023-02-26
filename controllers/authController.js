@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const requireLogin = require("../middleware/requirelogin");
 
 class authController {
-  signIn(req, res) {
+  signUp(req, res) {
     const { name, email, password } = req.body;
 
     if (!email || !password || !name) {
@@ -42,13 +42,13 @@ class authController {
       });
   }
 
-  signUp(req, res) {
-    const { email, password } = req.body;
+  signIn(req, res) {
+    const { name, password } = req.body;
 
-    if (!email || !password) {
+    if (!name || !password) {
       return res.status(422).json({ error: "Write email or password" });
     }
-    User.findOne({ email: email }).then((savedUser) => {
+    User.findOne({ name: name }).then((savedUser) => {
       if (!savedUser) {
         return res.status(422).json({ error: "No such user" });
       }
@@ -62,10 +62,10 @@ class authController {
               { _id: savedUser._id },
               process.env.JWT_SECRET
             );
-            const { _id, name, email, followers, following } = savedUser;
+            const { _id, name, email } = savedUser;
             res.json({
               token,
-              user: { _id, name, email, followers, following },
+              user: { _id, name, email },
             });
           } else {
             return res.status(422).json({ error: "Invalid Email or password" });
