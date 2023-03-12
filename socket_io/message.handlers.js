@@ -10,7 +10,7 @@ function messageHandlers(io, socket) {
 
   // утилита для обновления списка сообщений
   const updateMessageList = () => {
-    io.to(roomId).emit("message_list:update", messages[roomId]);
+    io.to(roomId).emit("message-list:update", messages[roomId]);
   };
 
   // обрабатываем получение сообщений
@@ -48,7 +48,7 @@ function messageHandlers(io, socket) {
 
   // обрабатываем удаление сообщения
   socket.on("message:remove", (message) => {
-    const { messageId, messageType, textOrPathToFile } = message;
+    const { messageId } = message;
 
     // пользователи не должны ждать удаления сообщения из БД
     // и файла на сервере (если сообщение является файлом)

@@ -13,7 +13,7 @@ function userHandlers(io, socket) {
   // утилита для обновления списка пользователей
   const updateUserList = () => {
     // сообщение получают только пользователи, находящиеся в комнате
-    io.to(roomId).emit('user_list:update', users[roomId])
+    io.to(roomId).emit('user-list:update', users[roomId])
   }
 
   // обрабатываем подключение нового пользователя

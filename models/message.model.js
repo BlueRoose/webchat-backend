@@ -7,11 +7,7 @@ const messageSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    messageType: {
-      type: String,
-      required: true,
-    },
-    textOrPathToFile: {
+    text: {
       type: String,
       required: true,
     },

@@ -1,4 +1,4 @@
-const { userHandlers } = require("./user.handlers.js");
+const userHandlers = require("./user.handlers.js");
 const messageHandlers = require("./message.handlers.js");
 
 function onConnection(io, socket) {
